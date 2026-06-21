@@ -11,7 +11,7 @@ import {
   Divider,
 } from './Hero.styled.js';
 
-export const Hero = () => {
+export const Hero = ({ onSearch }) => {
   const now = new Date();
 
   const monthYear = now.toLocaleDateString('en-US', {
@@ -45,7 +45,7 @@ export const Hero = () => {
           </RightText>
         </InfoBlock>
 
-        <SearchBar />
+        <SearchBar onSearch={onSearch} />
       </Content>
     </HeroSection>
   );
