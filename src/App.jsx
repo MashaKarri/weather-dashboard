@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Header } from './components/Header/Header.jsx';
 import { Hero } from './components/Hero/Hero.jsx';
 import { WeatherList } from './components/WeatherList/WeatherList.jsx';
+import { News } from './components/News/News.jsx';
 import { Footer } from 'components/Footer/Footer.jsx';
 
 import { fetchWeather } from './services/weatherApi.js';
@@ -56,6 +57,7 @@ function App() {
             loading={loading}
             onDelete={deleteCard}
           />
+          <News />
         </Main>
         <Footer />
       </Page>
