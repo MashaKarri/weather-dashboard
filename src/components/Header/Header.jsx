@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { RegisterModal } from '../Modal/Modal.jsx';
+
 import { IoChevronDown, IoChevronForward } from 'react-icons/io5';
 
 import {
@@ -10,6 +12,7 @@ import {
   NavItem,
   Right,
   SignButton,
+  UserName,
   Avatar,
   MobileMenuBtn,
   MobileMenu,
@@ -22,6 +25,20 @@ import userIcon from '../../assets/images/Header/avatar.png';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
+
+  const handleRegister = userData => {
+    setUser(userData);
+  };
 
   return (
     <>
@@ -39,7 +56,14 @@ export const Header = () => {
         </Nav>
 
         <Right>
-          <SignButton>Sign Up</SignButton>
+          {!user && (
+            <SignButton onClick={() => setIsModalOpen(true)}>
+              Sign Up
+            </SignButton>
+          )}
+
+          {user && <UserName>{user.username}</UserName>}
+
           <Avatar src={userIcon} alt="user" />
         </Right>
 
@@ -58,10 +82,23 @@ export const Header = () => {
 
           <MobileRight>
             <Avatar src={userIcon} alt="user" />
-            <SignButton>Sign Up</SignButton>
+
+            {!user && (
+              <SignButton onClick={() => setIsModalOpen(true)}>
+                Sign Up
+              </SignButton>
+            )}
+
+            {user && <UserName>{user.username}</UserName>}
           </MobileRight>
         </MobileMenu>
       )}
+
+      <RegisterModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onRegister={handleRegister}
+      />
     </>
   );
 };
