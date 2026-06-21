@@ -12,6 +12,17 @@ import {
 } from './Hero.styled.js';
 
 export const Hero = () => {
+  const now = new Date();
+
+  const monthYear = now.toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
+  });
+
+  const weekdayDay = `${now.toLocaleDateString('en-US', {
+    weekday: 'long',
+  })}, ${now.getDate()}${getDaySuffix(now.getDate())}`;
+
   return (
     <HeroSection>
       <Overlay />
@@ -28,9 +39,9 @@ export const Hero = () => {
           <Divider />
 
           <RightText>
-            October 2023
+            {monthYear}
             <br />
-            Friday, 13th
+            {weekdayDay}
           </RightText>
         </InfoBlock>
 
@@ -39,3 +50,18 @@ export const Hero = () => {
     </HeroSection>
   );
 };
+
+function getDaySuffix(day) {
+  if (day > 3 && day < 21) return 'th';
+
+  switch (day % 10) {
+    case 1:
+      return 'st';
+    case 2:
+      return 'nd';
+    case 3:
+      return 'rd';
+    default:
+      return 'th';
+  }
+}
