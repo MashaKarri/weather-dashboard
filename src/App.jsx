@@ -1,12 +1,15 @@
 import { useState } from 'react';
 
 import { GlobalStyle } from './styles/GlobalStyles.js';
+import { Page, Main } from './App.styled.js';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Header } from './components/Header/Header.jsx';
 import { Hero } from './components/Hero/Hero.jsx';
 import { WeatherList } from './components/WeatherList/WeatherList.jsx';
+import { Footer } from 'components/Footer/Footer.jsx';
 
 import { fetchWeather } from './services/weatherApi.js';
 
@@ -43,14 +46,19 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Header />
-      <ToastContainer />
-      <Hero onSearch={handleSearch} />
-      <WeatherList
-        weatherCards={weatherCards}
-        loading={loading}
-        onDelete={deleteCard}
-      />
+      <Page>
+        <Main>
+          <Header />
+          <ToastContainer />
+          <Hero onSearch={handleSearch} />
+          <WeatherList
+            weatherCards={weatherCards}
+            loading={loading}
+            onDelete={deleteCard}
+          />
+        </Main>
+        <Footer />
+      </Page>
     </>
   );
 }
