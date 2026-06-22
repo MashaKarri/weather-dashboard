@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+import { Container } from './components/Container/Container.jsx';
 import { GlobalStyle } from './styles/GlobalStyles.js';
 import { Page, Main } from './App.styled.js';
 
@@ -141,21 +142,21 @@ function App() {
       <Page>
         <Main>
           <Header />
-
           <ToastContainer />
-
           <Hero onSearch={handleSearch} />
 
-          <WeatherList
-            weatherCards={weatherCards}
-            loading={loading}
-            onDelete={deleteCard}
-            onRefresh={handleRefresh}
-            onFavorite={handleFavorite}
-          />
+          <Container>
+            <WeatherList
+              weatherCards={weatherCards}
+              loading={loading}
+              onDelete={deleteCard}
+              onRefresh={handleRefresh}
+              onFavorite={handleFavorite}
+            />
 
-          <News />
-          {photos.length > 0 && <Gallery images={photos} />}
+            <News />
+            {photos.length > 0 && <Gallery images={photos} />}
+          </Container>
         </Main>
 
         <Footer />

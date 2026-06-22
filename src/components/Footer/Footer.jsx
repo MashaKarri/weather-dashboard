@@ -1,6 +1,6 @@
 import {
   FooterWrapper,
-  FooterContainer,
+  FooterContent,
   Logo,
   InfoBlock,
   Title,
@@ -18,7 +18,7 @@ import whatsapp from '../../assets/icons/Whatsapp.png';
 export const Footer = () => {
   return (
     <FooterWrapper>
-      <FooterContainer>
+      <FooterContent>
         <Logo src={logo} alt="Logo" />
 
         <InfoBlock>
@@ -48,7 +48,7 @@ export const Footer = () => {
             </SocialLink>
           </Socials>
         </InfoBlock>
-      </FooterContainer>
+      </FooterContent>
     </FooterWrapper>
   );
 };

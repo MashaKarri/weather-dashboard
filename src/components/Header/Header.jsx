@@ -5,6 +5,7 @@ import { IoChevronDown, IoChevronForward } from 'react-icons/io5';
 
 import {
   HeaderWrapper,
+  HeaderContainer,
   Left,
   LogoImg,
   Nav,
@@ -43,33 +44,35 @@ export const Header = () => {
   return (
     <>
       <HeaderWrapper>
-        <Left>
-          <LogoImg src={logo} alt="logo" />
-        </Left>
+        <HeaderContainer>
+          <Left>
+            <LogoImg src={logo} alt="logo" />
+          </Left>
 
-        <Nav>
-          <NavList>
-            <NavItem>Who we are</NavItem>
-            <NavItem>Contacts</NavItem>
-            <NavItem>Menu</NavItem>
-          </NavList>
-        </Nav>
+          <Nav>
+            <NavList>
+              <NavItem>Who we are</NavItem>
+              <NavItem>Contacts</NavItem>
+              <NavItem>Menu</NavItem>
+            </NavList>
+          </Nav>
 
-        <Right>
-          {!user && (
-            <SignButton onClick={() => setIsModalOpen(true)}>
-              Sign Up
-            </SignButton>
-          )}
+          <Right>
+            {!user && (
+              <SignButton onClick={() => setIsModalOpen(true)}>
+                Sign Up
+              </SignButton>
+            )}
 
-          {user && <UserName>{user.username}</UserName>}
+            {user && <UserName>{user.username}</UserName>}
 
-          <Avatar src={userIcon} alt="user" />
-        </Right>
+            <Avatar src={userIcon} alt="user" />
+          </Right>
 
-        <MobileMenuBtn onClick={() => setIsOpen(!isOpen)}>
-          Menu {isOpen ? <IoChevronForward /> : <IoChevronDown />}
-        </MobileMenuBtn>
+          <MobileMenuBtn onClick={() => setIsOpen(!isOpen)}>
+            Menu {isOpen ? <IoChevronForward /> : <IoChevronDown />}
+          </MobileMenuBtn>
+        </HeaderContainer>
       </HeaderWrapper>
 
       {isOpen && (
