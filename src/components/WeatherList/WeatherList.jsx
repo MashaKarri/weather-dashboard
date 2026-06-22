@@ -4,7 +4,13 @@ import { Oval } from 'react-loader-spinner';
 
 import { List, ListItem, LoaderOverlay } from './WeatherList.styled.js';
 
-export const WeatherList = ({ weatherCards, loading, onDelete }) => {
+export const WeatherList = ({
+  weatherCards,
+  loading,
+  onDelete,
+  onRefresh,
+  onFavorite,
+}) => {
   return (
     <>
       {loading && (
@@ -23,7 +29,12 @@ export const WeatherList = ({ weatherCards, loading, onDelete }) => {
       <List>
         {weatherCards.map(card => (
           <ListItem key={card.id}>
-            <WeatherCard weather={card} onDelete={onDelete} />
+            <WeatherCard
+              weather={card}
+              onDelete={onDelete}
+              onRefresh={onRefresh}
+              onFavorite={onFavorite}
+            />
           </ListItem>
         ))}
       </List>

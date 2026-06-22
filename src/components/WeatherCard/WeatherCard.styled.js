@@ -95,10 +95,10 @@ export const ActionButton = styled.button`
 `;
 
 export const FavoriteButton = styled.button`
-  border: none;
-  background: transparent;
-  cursor: pointer;
+  color: ${({ $active }) => ($active ? 'red' : '#000')};
   font-size: 30px;
+  cursor: pointer;
+  transition: 0.2s;
 `;
 
 export const DeleteButton = styled.button`
