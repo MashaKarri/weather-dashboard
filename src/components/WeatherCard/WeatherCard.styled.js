@@ -46,7 +46,7 @@ export const ForecastButtons = styled.div`
 `;
 
 export const ForecastButton = styled.button`
-  padding: 8px 18px;
+  padding: 8px 10px;
   border: none;
   border-radius: 10px;
   background-color: #ffb36c;
