@@ -10,13 +10,16 @@ import { Header } from './components/Header/Header.jsx';
 import { Hero } from './components/Hero/Hero.jsx';
 import { WeatherList } from './components/WeatherList/WeatherList.jsx';
 import { News } from './components/News/News.jsx';
+import { Gallery } from 'components/Gallery/Gallery.jsx';
 import { Footer } from './components/Footer/Footer.jsx';
 
 import { fetchWeather } from './services/weatherApi.js';
+import { fetchNaturePhotos } from 'services/pixabayApi.js';
 
 function App() {
   const [weatherCards, setWeatherCards] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
     const loadSavedCities = async () => {
@@ -52,6 +55,18 @@ function App() {
   useEffect(() => {
     localStorage.setItem('weatherCards', JSON.stringify(weatherCards));
   }, [weatherCards]);
+
+  useEffect(() => {
+    const getPhotos = async () => {
+      try {
+        const data = await fetchNaturePhotos();
+        setPhotos(data);
+      } catch (error) {
+        console.error('Помилка завантаження фото:', error);
+      }
+    };
+    getPhotos();
+  }, []);
 
   const handleSearch = async city => {
     try {
@@ -140,6 +155,7 @@ function App() {
           />
 
           <News />
+          {photos.length > 0 && <Gallery images={photos} />}
         </Main>
 
         <Footer />
