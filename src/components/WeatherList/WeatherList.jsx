@@ -1,4 +1,7 @@
-import { WeatherCard } from '../WeatherCard/WeatherCard';
+import { useState } from 'react';
+
+import { WeatherCard } from '../WeatherCard/WeatherCard.jsx';
+import { WeatherDetails } from '../WeatherDetails/WeatherDetails.jsx';
 
 import { Oval } from 'react-loader-spinner';
 
@@ -11,6 +14,12 @@ export const WeatherList = ({
   onRefresh,
   onFavorite,
 }) => {
+  const [selectedWeather, setSelectedWeather] = useState(null);
+
+  const handleMore = weather => {
+    setSelectedWeather(weather);
+  };
+
   return (
     <>
       {loading && (
@@ -34,10 +43,13 @@ export const WeatherList = ({
               onDelete={onDelete}
               onRefresh={onRefresh}
               onFavorite={onFavorite}
+              onMore={handleMore}
             />
           </ListItem>
         ))}
       </List>
+
+      <WeatherDetails weather={selectedWeather} />
     </>
   );
 };

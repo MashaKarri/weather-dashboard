@@ -20,7 +20,13 @@ import { IoIosRefresh } from 'react-icons/io';
 import { GrFavorite } from 'react-icons/gr';
 import { FaRegTrashAlt } from 'react-icons/fa';
 
-export const WeatherCard = ({ weather, onDelete, onRefresh, onFavorite }) => {
+export const WeatherCard = ({
+  weather,
+  onDelete,
+  onRefresh,
+  onFavorite,
+  onMore,
+}) => {
   const { name, sys, main, weather: weatherInfo } = weather;
 
   const countryName = new Intl.DisplayNames(['en'], {
@@ -79,7 +85,7 @@ export const WeatherCard = ({ weather, onDelete, onRefresh, onFavorite }) => {
           <GrFavorite />
         </FavoriteButton>
 
-        <MoreButton>See more</MoreButton>
+        <MoreButton onClick={() => onMore(weather)}>See more</MoreButton>
 
         <DeleteButton onClick={() => onDelete(weather.id)}>
           <FaRegTrashAlt />
