@@ -2,6 +2,9 @@ import { useState } from 'react';
 
 import { WeatherCard } from '../WeatherCard/WeatherCard.jsx';
 import { WeatherDetails } from '../WeatherDetails/WeatherDetails.jsx';
+import { WeatherChart } from 'components/HourlyChart/HourlyChart.jsx';
+
+import { fetchWeatherForecast } from '../../services/weatherApi.js';
 
 import { Oval } from 'react-loader-spinner';
 
@@ -15,9 +18,17 @@ export const WeatherList = ({
   onFavorite,
 }) => {
   const [selectedWeather, setSelectedWeather] = useState(null);
+  const [forecast, setForecast] = useState(null);
 
-  const handleMore = weather => {
+  const handleMore = async weather => {
     setSelectedWeather(weather);
+
+    const data = await fetchWeatherForecast(
+      weather.coord.lat,
+      weather.coord.lon
+    );
+
+    setForecast(data);
   };
 
   return (
@@ -50,6 +61,7 @@ export const WeatherList = ({
       </List>
 
       <WeatherDetails weather={selectedWeather} />
+      <WeatherChart forecast={forecast} />
     </>
   );
 };

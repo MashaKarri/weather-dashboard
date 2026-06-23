@@ -17,3 +17,21 @@ export const fetchWeather = async city => {
 
   return data;
 };
+
+
+export const fetchWeatherForecast = async (lat, lon) => {
+  const { data } = await axios.get(
+    'https://api.openweathermap.org/data/2.5/forecast',
+    {
+      params: {
+        lat,
+        lon,
+        appid: API_KEY,
+        units: 'metric',
+        lang: 'ua',
+      },
+    }
+  );
+
+  return data;
+};
