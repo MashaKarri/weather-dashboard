@@ -87,6 +87,7 @@ export const WeatherChart = ({ forecast }) => {
           drawBorder: false,
         },
         ticks: {
+          padding: 15,
           color: '#000',
           font: { family: 'Montserrat', size: 11, weight: '500' },
         },
@@ -96,6 +97,7 @@ export const WeatherChart = ({ forecast }) => {
         max: 45,
         ticks: {
           stepSize: 5,
+          padding: 15,
           color: '#000',
           font: { family: 'Montserrat', size: 11, weight: '500' },
           callback: value => `${value}°C`,

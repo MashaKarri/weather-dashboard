@@ -10,7 +10,6 @@ export const fetchWeather = async city => {
         q: city,
         appid: API_KEY,
         units: 'metric',
-        lang: 'ua',
       },
     }
   );
@@ -28,7 +27,6 @@ export const fetchWeatherForecast = async (lat, lon) => {
         lon,
         appid: API_KEY,
         units: 'metric',
-        lang: 'ua',
       },
     }
   );

@@ -2,7 +2,8 @@ import { useState } from 'react';
 
 import { WeatherCard } from '../WeatherCard/WeatherCard.jsx';
 import { WeatherDetails } from '../WeatherDetails/WeatherDetails.jsx';
-import { WeatherChart } from 'components/HourlyChart/HourlyChart.jsx';
+import { WeatherChart } from '../HourlyChart/HourlyChart.jsx';
+import { WeeklyForecast } from '../WeeklyForecast/WeeklyForecast.jsx';
 
 import { fetchWeatherForecast } from '../../services/weatherApi.js';
 
@@ -21,14 +22,18 @@ export const WeatherList = ({
   const [forecast, setForecast] = useState(null);
 
   const handleMore = async weather => {
-    setSelectedWeather(weather);
+    try {
+      setSelectedWeather(weather);
 
-    const data = await fetchWeatherForecast(
-      weather.coord.lat,
-      weather.coord.lon
-    );
+      const data = await fetchWeatherForecast(
+        weather.coord.lat,
+        weather.coord.lon
+      );
 
-    setForecast(data);
+      setForecast(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -61,7 +66,10 @@ export const WeatherList = ({
       </List>
 
       <WeatherDetails weather={selectedWeather} />
+
       <WeatherChart forecast={forecast} />
+
+      <WeeklyForecast forecast={forecast} />
     </>
   );
 };
