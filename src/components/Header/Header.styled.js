@@ -31,7 +31,7 @@ export const Left = styled.div`
 `;
 
 export const LogoImg = styled.img`
-  height: 56px;
+  height: 55px;
 
   @media (max-width: 1199px) {
     height: 36px;
