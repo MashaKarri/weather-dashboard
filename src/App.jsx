@@ -23,26 +23,39 @@ function App() {
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
-    const loadSavedCities = async () => {
-      const saved = localStorage.getItem('weatherCards');
-
-      if (!saved) return;
-
-      const parsed = JSON.parse(saved);
-
+    const loadCities = async () => {
       try {
         setLoading(true);
 
-        const updated = await Promise.all(
-          parsed.map(card => fetchWeather(card.name))
-        );
+        const saved = localStorage.getItem('weatherCards');
 
-        const cards = updated.map((item, index) => ({
-          ...item,
-          favorite: parsed[index].favorite || false,
-        }));
+        if (saved) {
+          const parsed = JSON.parse(saved);
 
-        setWeatherCards(cards);
+          const updated = await Promise.all(
+            parsed.map(card => fetchWeather(card.name))
+          );
+
+          const cards = updated.map((item, index) => ({
+            ...item,
+            favorite: parsed[index].favorite || false,
+          }));
+
+          setWeatherCards(cards);
+        } else {
+          const defaultCities = ['Kyiv', 'London', 'New York'];
+
+          const cards = await Promise.all(
+            defaultCities.map(city => fetchWeather(city))
+          );
+
+          setWeatherCards(
+            cards.map(card => ({
+              ...card,
+              favorite: false,
+            }))
+          );
+        }
       } catch (error) {
         console.log(error);
       } finally {
@@ -50,7 +63,7 @@ function App() {
       }
     };
 
-    loadSavedCities();
+    loadCities();
   }, []);
 
   useEffect(() => {
