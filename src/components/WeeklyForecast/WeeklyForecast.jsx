@@ -7,6 +7,7 @@ import scattered_clouds from '../../assets/images/Weekly-Forecast/scattered-clou
 import {
   Container,
   Title,
+  ForecastGrid,
   ForecastRow,
   DateText,
   WeatherInfo,
@@ -56,31 +57,33 @@ export const WeeklyForecast = ({ forecast }) => {
     <Container>
       <Title>6-day forecast</Title>
 
-      {dailyForecast.map(day => (
-        <ForecastRow key={day.dt}>
-          <DateText>
-            {new Date(day.dt * 1000).toLocaleDateString('en-US', {
-              weekday: 'short',
-              month: 'short',
-              day: 'numeric',
-            })}
-          </DateText>
+      <ForecastGrid>
+        {dailyForecast.map(day => (
+          <ForecastRow key={day.dt}>
+            <DateText>
+              {new Date(day.dt * 1000).toLocaleDateString('en-US', {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+              })}
+            </DateText>
 
-          <WeatherInfo>
-            <WeatherIcon
-              src={getIcon(day.weather[0].description)}
-              alt={day.weather[0].description}
-            />
+            <WeatherInfo>
+              <WeatherIcon
+                src={getIcon(day.weather[0].description)}
+                alt={day.weather[0].description}
+              />
 
-            <Temp>
-              {Math.round(day.main.temp_max)}°{' / '}
-              {Math.round(day.main.temp_min)}°
-            </Temp>
-          </WeatherInfo>
+              <Temp>
+                {Math.round(day.main.temp_max)}°{' / '}
+                {Math.round(day.main.temp_min)}°
+              </Temp>
+            </WeatherInfo>
 
-          <Description>{day.weather[0].description}</Description>
-        </ForecastRow>
-      ))}
+            <Description>{day.weather[0].description}</Description>
+          </ForecastRow>
+        ))}
+      </ForecastGrid>
     </Container>
   );
 };
