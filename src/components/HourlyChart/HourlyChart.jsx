@@ -71,6 +71,9 @@ export const WeatherChart = ({ forecast }) => {
     ],
   };
 
+  const isMobile = window.innerWidth <= 767;
+  const isTablet = window.innerWidth <= 1199;
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -89,7 +92,13 @@ export const WeatherChart = ({ forecast }) => {
         ticks: {
           padding: 15,
           color: '#000',
-          font: { family: 'Montserrat', size: 11, weight: '500' },
+          font: {
+            family: 'Montserrat',
+            size: isMobile ? 9 : isTablet ? 10 : 11,
+            weight: '500',
+          },
+          maxRotation: 0,
+          minRotation: 0,
         },
       },
       y: {
@@ -99,7 +108,11 @@ export const WeatherChart = ({ forecast }) => {
           stepSize: 5,
           padding: 15,
           color: '#000',
-          font: { family: 'Montserrat', size: 11, weight: '500' },
+          font: {
+            family: 'Montserrat',
+            size: isMobile ? 9 : isTablet ? 10 : 11,
+            weight: '500',
+          },
           callback: value => `${value}°C`,
         },
         grid: {
