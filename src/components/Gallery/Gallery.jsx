@@ -19,12 +19,12 @@ export const Gallery = ({ images }) => {
 
       <SliderWrapper>
         <Swiper
-          effect={'coverflow'}
-          grabCursor={true}
-          centeredSlides={true}
-          loop={true}
-          slidesPerView={3}
+          effect="coverflow"
+          grabCursor
+          centeredSlides
+          loop
           spaceBetween={10}
+          modules={[EffectCoverflow]}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
@@ -32,7 +32,17 @@ export const Gallery = ({ images }) => {
             modifier: 2.5,
             slideShadows: true,
           }}
-          modules={[EffectCoverflow]}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1200: {
+              slidesPerView: 3,
+            },
+          }}
         >
           {images.map(img => (
             <SwiperSlide key={img.id}>

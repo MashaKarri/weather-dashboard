@@ -4,8 +4,17 @@ export const Container = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 80px;
-  padding-bottom: 50px;
+  padding: 80px 16px 50px;
+
+  @media (max-width: 1199px) {
+    max-width: 768px;
+    padding-top: 70px;
+  }
+
+  @media (max-width: 767px) {
+    max-width: 320px;
+    padding: 60px 0;
+  }
 `;
 
 export const Title = styled.h2`
@@ -13,6 +22,11 @@ export const Title = styled.h2`
   font-weight: 500;
   font-size: 20px;
   margin: 0 0 40px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 25px;
+    text-align: center;
+  }
 `;
 
 export const SliderWrapper = styled.div`
@@ -23,12 +37,31 @@ export const SliderWrapper = styled.div`
   }
 
   .swiper-slide {
-    width: 500px;
     height: 200px;
   }
 
   .swiper-slide-active {
     transform: scale(1.1);
+  }
+
+  @media (max-width: 1199px) {
+    padding: 0 40px;
+
+    .swiper-slide {
+      height: 180px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 0;
+
+    .swiper-slide {
+      height: 180px;
+    }
+
+    .swiper-slide-active {
+      transform: scale(1);
+    }
   }
 `;
 
