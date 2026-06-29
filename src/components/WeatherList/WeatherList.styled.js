@@ -20,6 +20,20 @@ export const List = styled.ul`
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 90px;
   list-style: none;
+
+  @media (max-width: 1199px) {
+    max-width: 768px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  @media (max-width: 767px) {
+    max-width: 320px;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 30px;
+    padding: 0;
+  }
 `;
 
 export const ListItem = styled.li`

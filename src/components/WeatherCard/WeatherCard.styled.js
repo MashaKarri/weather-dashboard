@@ -9,6 +9,10 @@ export const Card = styled.div`
   background: #e8e8e8;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1199px) {
+    max-width: 300px;
+  }
 `;
 
 export const Header = styled.div`
