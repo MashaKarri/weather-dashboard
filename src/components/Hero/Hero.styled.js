@@ -138,7 +138,7 @@ export const RightText = styled.p`
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 24px;
-  line-height: 1.15;
+  line-height: 1.14;
   text-align: left;
   margin: 0;
 
