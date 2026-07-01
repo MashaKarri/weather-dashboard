@@ -18,6 +18,28 @@ export const fetchWeather = async city => {
 };
 
 
+export const fetchCitySuggestions = async query => {
+  if (!query.trim()) return [];
+
+  try {
+    const { data } = await axios.get(
+      'https://api.openweathermap.org/geo/1.0/direct',
+      {
+        params: {
+          q: query,
+          limit: 5,
+          appid: API_KEY,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    console.error('Помилка завантаження міст:', error);
+    return [];
+  }
+};
+
+
 export const fetchWeatherForecast = async (lat, lon) => {
   const { data } = await axios.get(
     'https://api.openweathermap.org/data/2.5/forecast',
